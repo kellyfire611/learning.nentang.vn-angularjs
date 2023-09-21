@@ -44,7 +44,11 @@
     app.config(function ($routeProvider) {
       $routeProvider.when('/', {
         templateUrl: 'danh-sach-san-pham.html',
-        controller: ''
+        controller: 'sanphamController'
+      });
+      $routeProvider.when('/chi-tiet-san-pham/:sp_id', {
+        templateUrl: 'chi-tiet-san-pham.html',
+        controller: 'sanphamController'
       });
       $routeProvider.when('/lien-he', {
         templateUrl: 'lien-he.html'
@@ -58,8 +62,138 @@
 
     });
     // Đăng ký controller
-    app.controller('controller', function ($scope) {
+    app.controller('sanphamController', function ($scope, $routeParams, $location, $http) {
+      $scope.danhsachsanpham = [
+        {
+          sp_id: 1,
+          sp_hinh: 'assets/img/hoa-1.jpg',
+          sp_hinh_ribbon: 'assets/img/ribbon_new.png',
+          sp_ten: 'Hoa hồng đỏ (Red Rose)',
+          sp_chuyenmuc: 'Hoa tình yêu',
+          sp_mota_ngan: 'Hoa hồng đỏ (red rose): tình yêu và lãng mạn... hồng đỏ là một biểu tượng toàn cầu, mang nhiều ý nghĩa',
+          sp_mota_chitiet: `Hoa hồng đỏ (red rose): tình yêu và lãng mạn.
+Hoa hồng đỏ không chỉ mang nhiều ý nghĩa hơn các loài hoa hồng khác, hồng đỏ là một biểu tượng toàn cầu. Hoa hồng hiện diện mọi nơi trong những tác phẩm nghệ thuật, thơ ca cũng như các phương tiện truyền thông ngày nay. Chúng xuất hiện xuyên qua lịch sử, qua những nền văn hóa như là biểu tượng chính trị và tôn giáo. Sự bí ẩn của hoa hồng đỏ là niềm cảm hứng cho nhiều thế hệ. Tuy nhiên, điều chúng ta dễ nhận thấy nhất chính là hoa hồng - biểu tượng tình yêu và lãng mạn.
 
+Những bông hoa hồng đỏ được Trung Quốc giới thiệu đến châu Âu trong những năm 1800. Tuy nhiên, ý nghĩa của chúng khiến chúng ta quay lại những thế kỷ trước. Màu đỏ của chúng được dùng ẩn dụ ngầm thể hiện tình cảm sâu đậm. Trong huyền thoại Hy Lạp, màu đỏ thường liên hệ mật thiết với tình yêu của thượng đế. Trong nhiều nền văn hoa xa xưa, người ta dùng hoa hồng để trang hoàng đám cưới và trang phục cưới. Từ lý do trên, hoa hồng trở nên phổ biến như là biểu tượng tình yêu và lòng trung thành. Ngoài ra còn có truyền thống trao tặng hoa hồng để thể hiện tình cảm, dần dần hoa hồng tự nhiên nó trở thành sự lựa chọn truyền tải thông điệp tình yêu mạnh mẽ nhất. Truyền thống đó tiếp nối cho đến ngày hôm nay.
+
+Hoa hồng đỏ là điều giản dị nhất để nói "I love you". Với mối quan hệ chớm nở, một bó hồng đỏ là dấu hiệu bắt đầu một tình yêu lãng mạn. Hoa hồng giúp bạn gửi đi thông điệp vững tin và lời mời tình yêu tiến gần thêm một bước nữa. Và đôi khi chỉ một cành hoa hồng thôi cũng là câu trả lời đầy cảm xúc. Dù bất kỳ dịp nào đi nữa, hoa hồng rất khó làm ai đó từ chối!`,
+          sp_giacu: 4000000,
+          sp_gia: 3500000,
+          sp_url: '#!chi-tiet-san-pham/1'
+        },
+        {
+          sp_id: 2,
+          sp_hinh: 'assets/img/hoa-2.jpg',
+          sp_hinh_ribbon: 'assets/img/ribbon_new.png',
+          sp_ten: 'Hoa hồng trắng',
+          sp_chuyenmuc: 'Hoa tinh thần',
+          sp_mota_ngan: 'Hoa hồng trắng (white rose): Tình yêu trong sáng, ngây thơ, chia buồn, động viên tinh thần',
+          sp_mota_chitiet: `Hoa hồng trắng (white rose): Tình yêu trong sáng, ngây thơ, chia buồn, động viên tinh thần
+Huyền thoại của những nền văn minh khác nhau cho rằng bông hồng nguyên thủy mang màu trắng. Hoa hồng trắng tượng trưng cho tình yêu thực sự nhưng sau đó danh hiệu này thuộc về hồng đỏ. Hồng trắng vẫn giữ vai trò quan trọng là loài hoa truyền thống trong các lễ cưới.
+
+Hoa hồng trắng cũng tượng trưng cho danh dự và sự tôn kính, do đó chúng thường được dùng để tưởng nhớ người yêu dấu đã ra đi. Vì thế mà vòng hoa chia buồn thường có tone màu trắng với chủ đạo là hồng trắng kết hợp với các loài hoa trắng khác như lan, ly trắng.
+
+Ngoài những ý nghĩa của hồng trắng vẫn còn thông dụng đến ngày nay, một số ý nghĩa khác đã trở nên ít phổ biến hơn. Ví dụ như hồng trắng dạng búp là biểu trưng cho thời con gái mang thông điệp : còn non trẻ chưa muốn nghĩ tới tình yêu. Hồng trắng mang ý nghĩa là sự khởi đầu hoặc cũng có nghĩa là dấu hiệu chia xa. Chúng bao hàm cảm giác tình yêu, tình bạn, kính trọng và hy vọng. Một bó hoa hồng trắng không chỉ đẹp mà còn mang đến nhiều ý nghĩa đến người nhận nó. Cho dù bạn gửi hoa hồng trắng đến người nhận với lý do nào thì hãy tin rằng chúng sẽ được trân trọng như vẻ đẹp của chúng.`,
+          sp_giacu: 800000,
+          sp_gia: 600000,
+          sp_url: '#!chi-tiet-san-pham/2'
+        },
+        {
+          sp_id: 3,
+          sp_hinh: 'assets/img/hoa-3.jpg',
+          sp_hinh_ribbon: 'assets/img/ribbon_new.png',
+          sp_ten: 'Hoa cúc',
+          sp_chuyenmuc: 'Hoa may mắn',
+          sp_mota_ngan: 'Hoa Cúc (Daisy): món quà may mắn...Khi bạn muốn gửi món quà chúc mừng ai đó, hoa cúc chắc hẳn là sự lựa chọn hay',
+          sp_mota_chitiet: `Hoa Cúc (Daisy)
+
+Khi bạn muốn gửi món quà chúc mừng ai đó, hoa cúc chắc hẳn là sự lựa chọn hay. Cụm hoa dạng đầu lớn dễ làm liên tưởng đến hoa hướng dương, hoa đồng tiền nhiều sắc màu như cầu vồng vậy. Hồng sáng, trắng tuyết, vàng nắng hay đỏ ruby chỉ là vài màu sắc mà loài hoa hạnh phúc này khoác lên mình.
+
+Hoa cúc được phát hiện vào năm 1884 gần Nam Phi bởi ông Scotsman Robert Jameson. Tên khoa học Gerbera jamesonii lấy tên người đã tìm ra chúng, ý nghĩa của tên thông dụng của hoa cúc “Gerbera” lấy từ tên của nhà thực vật học người Đức Traugott Gerber.
+
+Chương trình lai giống bắt đầu ở Anh từ năm 1890 nhằm nâng cao chất lượng và đa dạng màu sắc hoa. Mức độ phổ biến của hoa đồng tiền sớm lan đến những nông dân trồng hoa ở Hà Lan cũng như Colombia, là nơi phân phối chính hoa cắt cành ngày nay. Hoa cúc là một trong mười lăm loài hoa phổ biến nhất trên hành tinh sau hoa hồng, hoa cẩm chướng và tulip.
+
+Ý nghĩa chung của hoa cúc thể hiện sự ngây thơ và vẻ đẹp thanh khiết. Một bó hoa cúc có thể nâng tâm hồn của ai đó hay làm một ngày làm việc của người nhận trở nên vui tươi hơn. Sự đa dạng màu sắc giúp cho hoa cúc là lựa chọn ưa thích cho những dịp sinh nhật, chúc sức khỏe, chúc mừng, cảm ơn… Khi bạn gửi hoa cúc đến ai đó, hãy biết rằng chúng mang thông điệp ý nghĩa sâu sắc và để lại cho người nhận những dấu ấn khó phai.
+
+Cúc (cho các màu nói chung): sự hoan hỉ, vui mừng; bạn là người bạn tuyệt vời
+Cúc đỏ tươi: mến yêu mãi mãi
+Cúc đỏ: tôi yêu…
+Cúc nhiều màu: đang nghĩ về một người bạn vắng mặt
+Cúc trắng: lòng tốt, lòng hào hiệp
+Cúc trắng: (tình cảm anh dành cho em là) sự thật
+Cúc vạn thọ: dỗ dành con tim
+Cúc vàng: lời hỏi thăm hàng ngày, kỉ niệm hàng ngày
+Cúc vàng: tình yêu nhẹ nhàng
+Cúc zinnia: nghĩ về bạn bè`,
+          sp_giacu: 960000,
+          sp_gia: 850000,
+          sp_url: '#!chi-tiet-san-pham/3'
+        },
+        {
+          sp_id: 4,
+          sp_hinh: 'assets/img/hoa-4.jpg',
+          sp_hinh_ribbon: 'assets/img/ribbon_new.png',
+          sp_ten: 'Hoa Diên vĩ',
+          sp_chuyenmuc: 'Hoa tinh thần',
+          sp_mota_ngan: 'Hoa Diên Vĩ (Iris): hoa quà tặng...Với vẻ đẹp độc nhất, hoa diên vĩ có rất nhiều ý nghĩa, khi được dùng làm quà tặng',
+          sp_mota_chitiet: `Hoa Diên Vĩ (Iris)
+
+Với vẻ đẹp độc nhất, hoa diên vĩ có rất nhiều ý nghĩa, khi được dùng làm quà tặng, chúng thể hiện sự thông cảm sâu sắc. Hơn 200 màu sắc khác nhau, hoa diên vĩ xuất phát từ tiếng Hy Lạp nghĩa là cầu vồng, mọc tự nhiên cũng như được trồng trong trang trại. Hoa diên vĩ trồng trong vườn hay trang trại có rất nhiều màu, nhưng hoa cắt cành thường chỉ có màu xanh (màu phổ biến nhất), trắng và vàng.
+Lịch sử của hoa diên vĩ làm chúng ta quay về thời Hy Lạp cổ đại khi vị thần Iris, người đưa thư cho các vị thần và sự hiện thân của cầu vồng, đóng vai trò liên kết giữa thiên đàng và hạ giới. Hoa diên vĩ tím được trồng trên mộ của người phụ nữ với mục đích gọi vị thần để hướng dẫn người đã mất trong cuộc hành trình của họ. Các vị vua Ai Cập cổ thích thú vì vẻ đẹp của hoa và bằng chứng là rất nhiều bức tranh vẽ hoa được tìm thấy trong cung điện Ai Cập cổ.
+
+Suốt thời Trung Cổ, ý nghĩa của hoa diên vĩ có sự liên quan mật thiết với nền quân chủ Pháp, bằng chứng là hoa này xuất hiện trong biểu tượng hoàng gia Pháp (fleur de lis). Từ xưa, hoa diên vĩ đã được dùng làm nước hoa và thuốc. Ngày nay, chúng ta bắt gặp hoa diên vĩ khắp nơi từ vườn, shop hoa và trong tự nhiên trên thế giới.
+
+Cho dù hoa diên vĩ mang tính lịch sử hơi dài dòng nhưng ý nghĩa loài hoa này tượng trưng cho sự chung thủy, hi vọng và sự thông thái. Dựa vào màu sắc và vùng miền, hoa diên vĩ còn có thêm những ý nghĩa khác. Màu xanh đậm hay tím tượng trưng lòng trung thành, màu vàng tượng trưng cho niềm đam mê. Hoa Iris còn thể hiện sự can đảm và ngưỡng mộ. Hoa diên vĩ được dùng trong nhiều dịp như tặng đối tác, chia buồn, chúc sức khỏe, sinh nhật…
+
+Ngày nay, hoa diên vĩ là loài hoa biểu trưng của tiểu bang Tennessee, biểu tượng hoa diên vĩ (Fleur-de-lis) tượng trưng cho thành phố New Orleans.`,
+          sp_giacu: 250000,
+          sp_gia: 35000,
+          sp_url: '#!chi-tiet-san-pham/4'
+        },
+        {
+          sp_id: 5,
+          sp_hinh: 'assets/img/hoa-5.jpg',
+          sp_hinh_ribbon: 'assets/img/ribbon_new.png',
+          sp_ten: 'Hoa Cẩm chướng',
+          sp_chuyenmuc: 'Hoa tình yêu',
+          sp_mota_ngan: 'Hoa Cẩm Chướng (Carnation): hoa tinh thần, tình yêu. Nó là một trong những loài hoa được trồng từ rất lâu trên thế giới',
+          sp_mota_chitiet: `Hoa Cẩm Chướng (Carnation)
+
+Hoa cẩm chướng với tên khoa học là Dianthus caryophyllus . Ý nghĩa của từ Dianthus tạm dịch là bông hoa tình yêu hay loài hoa của các vị thần. Theo tài liệu xưa, loài hoa này đã được phát hiện hàng thế kỷ. Nó là một trong những loài hoa được trồng từ rất lâu trên thế giới và được yêu thích nhờ vẻ đẹp, hoa lâu tàn và tỏa mùi đinh hương,.
+
+Lịch sử của hoa cẩm chướng dẫn chúng ta về thời Hy Lạp cổ đại, khi loài hoa này được sử dụng trong lĩnh vực nghệ thuật và trang trí. Người theo Đạo Công giáo tin rằng bông cẩm chướng đầu tiên nở hoa khi Đức Mẹ Maria khóc thương Chúa bị đóng đinh trên thập tự giá. Bông hoa cẩm chướng vào thời ấy được tìm thấy có màu hồng đào, nhưng theo thời gian màu của chúng đa dạng từ vàng, trắng, tím, thậm chí cả màu xanh. Cho dù qua nhiều thế kỷ, mức độ phát triển của cẩm chướng vẫn chưa hề dừng lại.
+
+Hoa cẩm chướng thể hiện sự quyến rũ, nét độc đáo và tình yêu. Cũng như các loài hoa khác , sự khác biệt về màu sắc thể hiện những thông điệp khác nhau. Ví dụ như cẩm chướng màu đỏ nhẹ thể hiện sự ngưỡng mộ, tuy nhiên màu đỏ đậm biểu lộ tình yêu sâu đậm . Cẩm chướng trắng tượng trưng cho sự trong trắng và may mắn, màu hồng lại biểu lộ lòng biết ơn. Trong thế kỷ 20, hoa cẩm chướng là loài hoa chính thức tượng trưng cho Ngày của Mẹ tại nhiều quốc gia trên thế giới.
+
+Trong cuộc sống ngày nay, cẩm chướng là sự lựa chọn cho nhiều dịp, sự kiện trong năm. Đó là loài hoa chỉ nhìn thoáng qua đã nhận ra, chúng toát lên vẻ quyến rũ hớp hồn mọi người trên thế giới. Thật sự ở rất nhiều quốc gia, mức độ phổ biến của chúng hơn nhiều loại hoa khác kể cả hoa hồng. Sức mạnh tình cảm mà loài hoa này mang lại là sự kết hợp hoàn hảo giữa vẻ đẹp cổ điển và độ bền dẻo dai.`,
+          sp_giacu: 960000,
+          sp_gia: 750000,
+          sp_url: '#!chi-tiet-san-pham/5'
+        },
+        {
+          sp_id: 6,
+          sp_hinh: 'assets/img/hoa-6.jpg',
+          sp_hinh_ribbon: 'assets/img/ribbon_new.png',
+          sp_ten: 'Hoa Lan',
+          sp_chuyenmuc: 'Hoa Lan',
+          sp_mota_ngan: 'Hoa lan (Orchids): là món quà tặng tuyệt vời cho bất kỳ dịp nào. Vẻ đẹp của chúng rất dễ gây sự chú ý',
+          sp_mota_chitiet: `Hoa lan (Orchids)
+
+Hoa lan có vẻ đẹp sang trọng và có độ bền lâu, là món quà tặng tuyệt vời cho bất kỳ dịp nào. Vẻ đẹp của chúng rất dễ gây sự chú ý cũng như gợi lên sự tinh tế và mộc mạc.
+
+Gần 25.000 loài hoa lan trong tự nhiên và nhiều loài được phát hiện hàng năm, lan là gia đình hoa lớn nhất thế giới. Thông thường chúng được tìm thấy ở vùng nhiệt đới nhưng chúng lại mọc tự nhiên trong hầu hết các vùng khí hậu. Hoa lan hồ điệp (Phalaenopsis or Moth), lan Dendrobium, lan Vanilla (giống lan Vanilla sống bám vào thân cây khác như một loại dây leo (giống cây tiêu), ra hoa, đậu quả và cho hương vanilla thiên nhiên). Trái vanilla (được sử dụng rộng rãi và lâu đời trong các lễ nghi tôn giáo và chế biến thức ăn, thức uống truyền thống của các dân tộc Trung Mỹ.) là những loài hoa được sử dụng rộng rãi nhất.
+
+Hoa lan bao hàm nhiều ý nghĩa nhưng trong lịch sử ý nghĩa của loài hoa này là sự thịnh vượng, tình yêu và cái đẹp. Với người Hy Lạp cổ, hoa lan thể hiện tính hùng dũng. Vào thời Victorian England (bắt đầu từ năm 1937, khi Victoria trở thành Nữ Hoàng, đánh dấu sự hùng mạnh của Vương quốc Anh) thì hoa lan trở thành biểu tượng của sự sang trọng. Người ta tin rằng hoa lan mang đến sự hồi phục, bảo vệ và xua đuổi bệnh tật. Người Aztecs (dân tộc sống tại miền Trung Mexico) nói rằng uống hỗn hợp vani, hoa lan và socola đem cho họ sức mạnh, trong khi đó người Trung Quốc tin hoa lan giúp chưa ung thư phổi và ho.
+
+Ngày nay, hoa lan được xem như là biểu tượng của cái đẹp hiếm có. Hoa lan vẫn là cây trồng tại nhà phổ biến nhất cùng với hoa lily (trong chậu trồng từ củ). Hoa lan có một vị trí đặc biệt như là loài hoa quyến rũ, là món quà quý dành tặng những người thân thương nhất.`,
+          sp_giacu: 420000,
+          sp_gia: 120000,
+          sp_url: '#!chi-tiet-san-pham/6'
+        },
+      ];
+
+      $scope.sp_id = $routeParams.sp_id;
+      $scope.sp = $scope.danhsachsanpham.find((e) => e.sp_id == $scope.sp_id);
     });
   </script>
 </body>

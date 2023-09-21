@@ -1,13 +1,8 @@
-<div id="product-list-header">
-  <div class="product-list-header-title">
-    <h1>Danh sách Sản phẩm</h1>
-    <p>Các sản phẩm với chất lượng hàng đầu; Bảo hành chính hãng, uy tín... </p>
-  </div>
-</div>
+<h3>Chi tiết sản phẩm {{ sp_id }}</h3>
 
 <div id="product-list-content">
   <div class="product-container">
-    <div class="product-wrapper" ng-repeat="sp in danhsachsanpham">
+    <div class="product-wrapper">
       <div class="product">
         <img ng-src="{{ sp.sp_hinh }}" class="product-img-thumbnail" />
         <img ng-src="{{ sp.sp_hinh_ribbon }}" class="product-img-badge-new" />
@@ -18,9 +13,6 @@
           <p class="product-info-short-description">{{ sp.sp_mota_ngan }}</p>
 
           <div class="product-info-footer">
-            <div class="product-info-footer-button-container">
-              <a href="{{ sp.sp_url }}" class="link-view-detail">Xem chi tiết</a>
-            </div>
             <div class="product-info-footer-price-container">
               <span class="price-old">{{ sp.sp_giacu | number:0 }}đ</span>
               <span class="price">{{ sp.sp_gia | number:0 }}đ</span>
@@ -30,7 +22,14 @@
         </div>
       </div>
     </div>
+    <div class="product-content-wrapper">
+      <h1><a href="{{ sp.sp_url }}">{{ sp.sp_ten }}</a></h1>
+      <p class="product-info-category">{{ sp.sp_chuyenmuc }}</p>
+      {{ sp.sp_mota_chitiet }}
+    </div>
     <div class="clear-fix"></div>
     <!-- Dòng sản phẩm 2 End -->
   </div>
 </div>
+
+<a href="#!/" class="btn btn-outline">Quay về Trang chủ</a>
