@@ -1,0 +1,30 @@
+* {
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+#main-header {
+  background: #ff0000;
+  margin: 5px;
+  text-align: center;
+  color: #fff;
+  padding: 10px;
+}
+#main-navbar {
+  margin: 5px;
+}
+#main-content {
+  border: 3px dashed green;
+  margin: 5px;
+  padding: 10px;
+}
+#main-footer {
+  background: #000;
+  color: #fff;
+  text-align: center;
+  margin: 5px;
+  padding: 30px;
+}
+#main-footer a {
+  color: yellow;
+}

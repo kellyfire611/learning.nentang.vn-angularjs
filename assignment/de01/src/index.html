@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="keywords" content="Nền tảng,HTML,CSS,XML,JavaScript, Lập trình C#, Lập trình, Web, Kiến thức, Đồ án">
+  <meta name="author" content="Dương Nguyễn Phú Cường">
+  <meta name="description"
+    content="Cung cấp các kiến thức Nền tảng, cơ bản về Lập trình, Lập trình web, Lập trình di động, Cơ sở dữ liệu, ...">
+  <meta property="og:locale" content="vi_VN">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Nền tảng Kiến thức">
+  <meta property="og:description"
+    content="Cung cấp các kiến thức Nền tảng, cơ bản về Lập trình, Lập trình web, Lập trình di động, Cơ sở dữ liệu, ...">
+  <meta property="og:url" content="https://nentang.vn/">
+  <meta property="og:site_name" content="Nền tảng Kiến thức">
+
+  <title>Bài tập lớn - Đề 01 | NenTang.vn</title>
+
+  <!-- Liên kết CSS sử dụng cho toàn dự án -->
+  <link href="assets/css/app.css" type="text/css" rel="stylesheet" />
+</head>
+
+<body ng-app="nentangApp">
+
+  <div ng-controller="layoutController">
+    <div ng-include="'layouts/header.html'"></div>
+    <div ng-include="'layouts/navbar.html'"></div>
+
+    <div id="main-content" ng-view></div>
+
+    <div ng-include="'layouts/footer.html'"></div>
+  </div>
+
+
+  <!-- Liên kết thư viện AngularJS -->
+  <script src="assets/vendor/angularjs/angular.min.js"></script>
+  <script src="assets/vendor/angularjs/angular-route.min.js"></script>
+  <script>
+    // Khởi tạo ứng dụng AngularJS
+    var app = angular.module('nentangApp', ['ngRoute']);
+    // Đăng ký route
+    app.config(function ($routeProvider) {
+      $routeProvider.when('/', {
+        templateUrl: 'danh-sach-san-pham.html',
+        controller: ''
+      });
+      $routeProvider.when('/lien-he', {
+        templateUrl: 'lien-he.html'
+      });
+      $routeProvider.when('/gioi-thieu', {
+        templateUrl: 'gioi-thieu.html'
+      });
+    });
+    // Đăng ký controller layoutController
+    app.controller('layoutController', function ($scope) {
+
+    });
+    // Đăng ký controller
+    app.controller('controller', function ($scope) {
+
+    });
+  </script>
+</body>
+
+</html>
