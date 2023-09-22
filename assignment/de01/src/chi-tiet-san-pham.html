@@ -1,6 +1,6 @@
 <h3>Chi tiết sản phẩm {{ sp_id }}</h3>
 
-<div id="product-list-content">
+<div id="product-detail-content">
   <div class="product-container">
     <div class="product-wrapper">
       <div class="product">
@@ -8,7 +8,7 @@
         <img ng-src="{{ sp.sp_hinh_ribbon }}" class="product-img-badge-new" />
 
         <div class="product-info">
-          <a href="{{ sp.sp_url }}">{{ sp.sp_ten }}</a>
+          <a href="{{ sp.sp_url }}">#{{ sp.sp_id }} {{ sp.sp_ten }}</a>
           <p class="product-info-category">{{ sp.sp_chuyenmuc }}</p>
           <p class="product-info-short-description">{{ sp.sp_mota_ngan }}</p>
 
@@ -23,9 +23,11 @@
       </div>
     </div>
     <div class="product-content-wrapper">
-      <h1><a href="{{ sp.sp_url }}">{{ sp.sp_ten }}</a></h1>
+      <h1 class="product-info-title"><a href="{{ sp.sp_url }}">#{{ sp.sp_id }} {{ sp.sp_ten }}</a></h1>
       <p class="product-info-category">{{ sp.sp_chuyenmuc }}</p>
-      {{ sp.sp_mota_chitiet }}
+      <p class="product-info-full-description">
+        {{ sp.sp_mota_chitiet }}
+      </p>
     </div>
     <div class="clear-fix"></div>
     <!-- Dòng sản phẩm 2 End -->

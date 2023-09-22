@@ -2,6 +2,7 @@
   box-sizing: border-box;
   margin: 0px;
   padding: 0px;
+  font-family: 'Nunito Sans', sans-serif;
 }
 .clear-fix {
   clear: both;
@@ -41,7 +42,7 @@
   border: 1px solid #00000050;
 }
 
-/* Trình bày Sản phẩm */
+/* Trình bày Danh sách Sản phẩm */
 #product-list-header {
   background: #9020d58c;
   padding-top: 20px;
@@ -105,40 +106,27 @@
   text-decoration: none;
   color: blue;
 }
-#product-list-content
-  .product-container
-  .product
-  .product-info
-  .product-info-category {
+
+.product-container .product .product-info .product-info-category {
   color: #707070;
   margin-top: 5px;
   margin-bottom: 0px;
 }
-#product-list-content
-  .product-container
-  .product
-  .product-info
-  .product-info-short-description {
+.product-container .product .product-info .product-info-short-description {
   margin-top: 5px;
   margin-bottom: 0px;
 }
-#product-list-content
-  .product-container
-  .product
-  .product-info
-  .product-info-footer {
+.product-container .product .product-info .product-info-footer {
   border-top: 2px solid #c3c3c3;
   padding-top: 10px;
 }
-#product-list-content
-  .product-container
+.product-container
   .product
   .product-info
   .product-info-footer-button-container {
   float: left;
 }
-#product-list-content
-  .product-container
+.product-container
   .product
   .product-info
   .product-info-footer-button-container
@@ -150,15 +138,10 @@
   border-radius: 5px;
 }
 
-#product-list-content
-  .product-container
-  .product
-  .product-info
-  .product-info-footer-price-container {
+.product-container .product .product-info .product-info-footer-price-container {
   float: right;
 }
-#product-list-content
-  .product-container
+.product-container
   .product
   .product-info
   .product-info-footer-price-container
@@ -167,8 +150,7 @@
   text-decoration: line-through;
   color: rgb(117, 117, 155);
 }
-#product-list-content
-  .product-container
+.product-container
   .product
   .product-info
   .product-info-footer-price-container
@@ -178,10 +160,23 @@
 }
 
 /* Chi tiết sản phẩm */
+#product-detail-content {
+}
 .product-container .product-content-wrapper {
   padding: 0px 5px;
   float: left;
   width: 66.66%;
+}
+.product-info-full-description {
+  padding: 10px;
+  border: 1px dotted blue;
+}
+.product-info-title {
+  font-family: 'Fuggles', cursive;
+  font-size: 3em;
+}
+.product-info-title a {
+  text-decoration: none;
 }
 
 /* Buttons */
@@ -193,7 +188,6 @@
   cursor: pointer;
 }
 .btn-outline {
-
 }
 
 /* Forms */
